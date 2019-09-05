@@ -7,8 +7,8 @@ function lotka_volterra(du,u,p,t)
   du[2] = dy = -δ*y + γ*x*y
 end
 function lotka_volterra_noise(du,u,p,t)
-  du[1] = 0.1u[1]
-  du[2] = 0.1u[2]
+  du[1] = 0.2u[1]
+  du[2] = 0.2u[2]
 end
 prob = SDEProblem(lotka_volterra,lotka_volterra_noise,[1.0,1.0],(0.0,10.0))
 p = param([2.2, 1.0, 2.0, 0.4])
@@ -17,7 +17,7 @@ function predict_fd_sde()
 end
 loss_fd_sde() = sum(abs2,x-1 for x in predict_fd_sde())
 
-data = Iterators.repeated((), 100)
+data = Iterators.repeated((), 10)
 opt = ADAM(0.1)
 cb = function ()
   display(loss_fd_sde())
