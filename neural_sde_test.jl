@@ -1,5 +1,4 @@
 using Flux, DiffEqFlux, DifferentialEquations, Plots
-
 function lotka_volterra(du,u,p,t)
   x, y = u
   α, β, δ, γ = p
